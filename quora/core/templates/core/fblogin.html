@@ -11,9 +11,8 @@
     <h2 class="centered">Quora</h2>
     <p class="centered">Get answers to your questions.</p>
     <hr>
-    <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-block btn-lg big-fb-button btn-social btn-facebook">
-        <span class="fa fa-facebook"></span> Sign in with Facebook
-    </a>
+      {% load socialaccount %}
+      <a href="{% provider_login_url 'google' %}">Login With Google</a>
   </div>
 </div>
 {% endblock body %}

@@ -18,7 +18,7 @@ def home(request):
         all_questions = Question.get_published()[:10]
         return render(request, 'core/splash.html', {'questions': all_questions})
 
-def fblogin(request):
+def login(request):
    context = RequestContext(request,
                            {'request': request,
                             'user': request.user})
