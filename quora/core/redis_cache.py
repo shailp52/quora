@@ -1,6 +1,6 @@
 import redis
 import json
-import cPickle
+import pickle as cPickle
 from django.conf import settings
 
 class RedisCache:
@@ -15,7 +15,7 @@ class RedisCache:
         try:
             return self.r.set(key, value, ex)
         except Exception as e:
-            print "Check and set exception for ", key,  str(e)
+            print("Check and set exception for ", key,  str(e))
             self.__init__()
             return None
 
@@ -26,7 +26,7 @@ class RedisCache:
         try:
             value = self.r.get(key)
         except Exception as e:
-            print "Check and get exception ", str(e)
+            print("Check and get exception ", str(e))
             value = None
         return value
 
@@ -38,21 +38,21 @@ class RedisCache:
             for key in self.r.keys(pattern):
                 self.delete(key)
         except Exception as e:
-            print "Check and get exception ", str(e)
+            print("Check and get exception ", str(e))
 
     def save(self, key, value, ex=None):
         value = json.dumps(value)
         try:
             return self.check_and_set(key, value, ex)
         except Exception as e:
-            print "Set key failed with exception : ", str(e)
+            print("Set key failed with exception : ", str(e))
             return None
 
     def increment(self, key, value=1):
         try:
             return self.r.incr(key, value)
         except Exception as e:
-            print "Increment key failed with exception : ", str(e)
+            print("Increment key failed with exception : ", str(e))
             return None
 
     def get(self, key):

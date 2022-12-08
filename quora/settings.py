@@ -19,10 +19,13 @@ DATABASES = {
         'PASSWORD': 'root',
         'HOST': '172.17.0.4',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
+        'OPTIONS': {
+           "init_command": "SET GLOBAL max_connections = 100000", #<-- The fix
+        }
     }
 }
 
-REDIS_HOST = '172.17.0.6'
+REDIS_HOST = '172.17.0.3'
 
 # Application definition
 INSTALLED_APPS = (
