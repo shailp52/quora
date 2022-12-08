@@ -43,7 +43,8 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'bootstrap3'
+    'bootstrap3',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -144,3 +145,5 @@ SOCIALACCOUNT_PROVIDERS = {
 
 SITE_ID = 4
 LOGIN_REDIRECT_URL = '/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

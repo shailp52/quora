@@ -49,13 +49,17 @@ class SignUpForm(forms.ModelForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),
         max_length=30,
         required=True,
+        label='Username')
+    email = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),
+        max_length=30,
+        required=True,
         label='Email')
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
     class Meta:
         model = User
         exclude = ['last_login', 'date_joined']
-        fields = ['firstname', 'lastname', 'username', 'password']
+        fields = ['firstname', 'lastname', 'email', 'username', 'password']
 
     def __init__(self, *args, **kwargs):
         super(SignUpForm, self).__init__(*args, **kwargs)
