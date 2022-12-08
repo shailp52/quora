@@ -18,12 +18,12 @@ def home(request):
         all_questions = Question.get_published()[:10]
         return render(request, 'core/splash.html', {'questions': all_questions})
 
-def login(request):
-   context = RequestContext(request,
-                           {'request': request,
-                            'user': request.user})
-   return render_to_response('core/fblogin.html',
-                             context_instance=context)
+# def login(request):
+#    context = RequestContext(request,
+#                            {'request': request,
+#                             'user': request.user})
+#    return render_to_response('core/fblogin.html',
+#                              context_instance=context)
 
 def hidden_login(request):
     return render(request, 'core/cover.html')
@@ -35,6 +35,7 @@ def profile(request):
         form = ProfileForm(request.POST)
         if form.is_valid():
             user.first_name = form.cleaned_data.get('first_name')
+            user.last_name = form.cleaned_data.get('last_name')
             user.email = form.cleaned_data.get('email')
             user.save()
             messages.add_message(request, messages.SUCCESS, 'Your profile were successfully edited.')

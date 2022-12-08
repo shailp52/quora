@@ -5,14 +5,17 @@ class ProfileForm(forms.ModelForm):
 
     first_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),
         max_length=30,
-        required=True)
+        required=False)
+    last_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),
+        max_length=30,
+        required=False)
     email = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),
         max_length=75,
         required=False)
 
     class Meta:
         model = User
-        fields = ['first_name', 'email']
+        fields = ['first_name', 'last_name', 'email']
 
     def full_clean(self):
         'Strip whitespace automatically in all form fields'
