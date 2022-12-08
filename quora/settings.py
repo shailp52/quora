@@ -17,14 +17,12 @@ DATABASES = {
         'NAME': 'shail',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': '172.17.0.3',   # Or an IP Address that your DB is hosted on
+        'HOST': '172.17.0.4',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
 
 REDIS_HOST = '172.17.0.6'
-
-ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = (
@@ -143,5 +141,5 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 3
+SITE_ID = 4
 LOGIN_REDIRECT_URL = '/'

@@ -47,7 +47,7 @@ class Profile(models.Model):
         return self.url or 'https://qsf.is.quoracdn.net/-72c091d25b3e045b.png'
 
     def get_private_screen_name(self):
-        return self.user.first_name or 'Anon'
+        return self.user.first_name or 'Anonymous User'
 
     def get_non_private_screen_name(self):
         return self.user.first_name or self.user.username
