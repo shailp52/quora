@@ -10,10 +10,12 @@ def signup(request):
             return render(request, 'auth/signup.html', {'form': form})
         else:
             firstname = form.cleaned_data.get('firstname')
+            lastname = form.cleaned_data.get('lastname')
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             User.objects.create_user(
                 first_name=firstname,
+                last_name=lastname,
                 username=username,
                 password=password)
             user = authenticate(username=username, password=password)
