@@ -11,8 +11,23 @@ import markdown
 from django.template.loader import render_to_string
 from quora.questions.lib.decorators import ajax_login_required
 import ujson
+from quora.core.redis_cache import RedisCache
+
+
+# redis = RedisCache()
+QUESTIONS_KEY = "ALL_QUESTIONS"
+QUESTIONS_TTL = 60 * 1000
 
 def _questions(request, questions):
+    
+    # result = redis.get_pickle(QUESTIONS_KEY)
+    # if result:
+    #     return render(
+    #     request,
+    #     'questions/questions.html',
+    #     {'questions': result['questions'], 'popular_tags': result['popular_tags'], 'users': result['users']},
+    # )
+
     paginator = Paginator(questions, 10)
     page = request.GET.get('page')
     try:
@@ -22,12 +37,15 @@ def _questions(request, questions):
     except EmptyPage:
         questions = paginator.page(paginator.num_pages)
     popular_tags = Tag.get_popular_tags()
-    top_users = list(User.objects.filter(is_active=True))
+    top_users = list(User.objects.filter(is_active=True))[:10]
     top_users.sort(key=lambda x: x.questioncomment_set.count(), reverse=True)
+
+    data = {'questions': questions, 'popular_tags': popular_tags, 'users': top_users}
+    # redis.save_pickle(key=QUESTIONS_KEY, data=data, ex=QUESTIONS_TTL)
     return render(
         request,
         'questions/questions.html',
-        {'questions': questions, 'popular_tags': popular_tags, 'users': top_users},
+        data,
     )
 
 def questions(request):
