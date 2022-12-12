@@ -17,14 +17,15 @@ DATABASES = {
         'NAME': 'shail',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': '172.17.0.3',   # Or an IP Address that your DB is hosted on
+        'HOST': '172.17.0.4',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
+        'OPTIONS': {
+           "init_command": "SET GLOBAL max_connections = 100000", #<-- The fix
+        }
     }
 }
 
-REDIS_HOST = '172.17.0.6'
-
-ALLOWED_HOSTS = ['127.0.0.1']
+REDIS_HOST = '172.17.0.3'
 
 # Application definition
 INSTALLED_APPS = (
@@ -45,6 +46,8 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'bootstrap3',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -143,5 +146,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SITE_ID = 1
+SITE_ID = 4
 LOGIN_REDIRECT_URL = '/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

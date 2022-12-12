@@ -9,7 +9,7 @@ def SignupDomainValidator(value):
             domain = value[value.index("@"):]
             if domain not in ALLOWED_SIGNUP_DOMAINS:
                 raise ValidationError(u'Invalid domain. Allowed domains on this network: {0}'.format(','.join(ALLOWED_SIGNUP_DOMAINS)))
-        except Exception, e:
+        except Exception as e:
             raise ValidationError(u'Invalid domain. Allowed domains on this network: {0}'.format(','.join(ALLOWED_SIGNUP_DOMAINS)))
 
 def ForbiddenUsernamesValidator(value):
@@ -42,7 +42,15 @@ class SignUpForm(forms.ModelForm):
         max_length=30,
         required=True,
         label='First name')
+    lastname = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),
+        max_length=30,
+        required=True,
+        label='Last name')
     username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),
+        max_length=30,
+        required=True,
+        label='Username')
+    email = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}),
         max_length=30,
         required=True,
         label='Email')
@@ -51,7 +59,7 @@ class SignUpForm(forms.ModelForm):
     class Meta:
         model = User
         exclude = ['last_login', 'date_joined']
-        fields = ['firstname', 'username', 'password']
+        fields = ['firstname', 'lastname', 'email', 'username', 'password']
 
     def __init__(self, *args, **kwargs):
         super(SignUpForm, self).__init__(*args, **kwargs)

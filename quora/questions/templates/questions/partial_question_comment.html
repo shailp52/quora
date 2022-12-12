@@ -10,7 +10,7 @@
         <div class="col-xs-11 tight-column">
             <a href="{% url 'public_profile' comment.user.id %}"><img src="{{ comment.user.profile.get_picture }}" class="comment-portrait round-user"></a>
             <div class="comment-text">
-                <h5><a href="{% url 'public_profile' comment.user.id %}">{{ comment.user.profile.get_screen_name }}</a><small>{{ comment.date|naturaltime }}</small></h5>
+                <h5><a href="{% url 'public_profile' comment.user.id %}">{{ comment.user.profile.get_non_private_screen_name }}</a><small>{{ comment.date|naturaltime }}</small></h5>
                 <div style="word-wrap: break-word;">{{ comment.get_comment_as_markdown|safe }}</div>
             </div>
         </div>

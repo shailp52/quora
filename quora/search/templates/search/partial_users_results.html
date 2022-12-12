@@ -6,8 +6,8 @@
         <h5>
           <img src="{{ user_result.profile.get_picture }}" class="result-user">
           <a href="{% url 'profile' user_result.username %}">
-            {{ user_result.profile.get_screen_name }}
-            <small>({{ user_result.username }})</small>
+            {{ user_result.profile.get_non_private_screen_name }}
+            <small>({{ user_result.firstname }})</small>
           </a>
         </h5>
       </li>

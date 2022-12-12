@@ -5,7 +5,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 from quora.core.views import (
-    login,
     home,
     password,
     picture,
@@ -14,7 +13,7 @@ from quora.core.views import (
     settings,
 )
 from quora.search.views import search
-from quora.profile.views import signup
+from quora.profile.views import signup, login_request
 
 
 admin.autodiscover()
@@ -24,7 +23,7 @@ urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^hidden_login', login, {'template_name': 'core/cover.html'}, name='login'),
     url(r'accounts/', include('allauth.urls')),
-    url(r'login', login, name='login'),
+    url(r'login', login_request, name='login'),
     url(r'^logout', logout, {'next_page': '/'}, name='logout'),
     url(r'^signup/$', signup, name='signup'),
     url(r'^public_profile/(?P<id>\d+)/$', public_profile, name='public_profile'),
