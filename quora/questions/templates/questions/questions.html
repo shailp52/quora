@@ -14,7 +14,7 @@
       <div class="row">
         {% for user in users %}
           <div class="col-md-12">
-            <img class="round-user" src="{{ user.profile.get_picture }}" style="width:20px;">
+            <!-- <img class="round-user" src="{{ user.profile.get_picture }}" style="width:20px;"> -->
             <a href="{% url 'public_profile' user.id %}">{{ user.profile.get_private_screen_name }}</a>
           </div>
         {% endfor %}

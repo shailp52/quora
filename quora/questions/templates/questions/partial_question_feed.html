@@ -7,7 +7,7 @@
       {{ question.create_date|naturaltime }}
     </span>
     <span class="user">
-      <a href="{% url 'public_profile' question.create_user.id %}"><img class="round-user" src="{{ question.create_user.profile.get_picture }}"></a>
+      <!-- <a href="{% url 'public_profile' question.create_user.id %}"><img class="round-user" src="{{ question.create_user.profile.get_picture }}"></a> -->
       <a href="{% url 'public_profile' question.create_user.id %}">{{ question.create_user.profile.get_private_screen_name }}</a>
     </span>
     <span class="comments">
